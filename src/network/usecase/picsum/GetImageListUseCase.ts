@@ -7,7 +7,7 @@ interface RequestGetImageList {
   limit?: number;
 }
 
-interface ResponseGetImageList {
+interface PicsumItem {
   id: string;
   author: string;
   width: number;
@@ -18,14 +18,14 @@ interface ResponseGetImageList {
 
 class GetImageListUseCase extends CommonUseCase<
   RequestGetImageList,
-  ResponseGetImageList
+  PicsumItem[]
 > {
   protected execute(
     parameter: RequestGetImageList
-  ): Promise<CommonResult<ResponseGetImageList>> {
+  ): Promise<CommonResult<PicsumItem[]>> {
     return picsumRepository.getImageList(parameter);
   }
 }
 
-export type { RequestGetImageList, ResponseGetImageList };
+export type { RequestGetImageList, PicsumItem };
 export default GetImageListUseCase;

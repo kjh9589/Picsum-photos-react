@@ -1,5 +1,7 @@
+import MainScreen from "./screens/main/MainScreen";
+
 function App() {
-  return <></>;
+  return <MainScreen />;
 }
 
 export default App;

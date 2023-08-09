@@ -1,22 +1,26 @@
 import apiModule from "../../module/apiModule";
 import { RequestGetImageDetail } from "../../usecase/picsum/GetImageDetailUseCase";
-import { RequestGetImageList } from "../../usecase/picsum/GetImageListUseCase";
+import {
+  PicsumItem,
+  RequestGetImageList,
+} from "../../usecase/picsum/GetImageListUseCase";
 import convertError from "../../utils/convertError";
 
 const getImageList = async (parameter: RequestGetImageList) => {
   const res = await apiModule
-    .get("/list", {
+    .get<PicsumItem[]>("/v2/list", {
       params: parameter,
     })
     .catch((error) => {
       return convertError(error);
     });
 
+  console.log("api", res.data);
   return res;
 };
 
 const getImageDetail = async (parameter: RequestGetImageDetail) => {
-  const res = await apiModule.get(`/id/${parameter}/info`).catch((error) => {
+  const res = await apiModule.get(`/id/${parameter.id}/info`).catch((error) => {
     return convertError(error);
   });
 

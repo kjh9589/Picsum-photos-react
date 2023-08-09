@@ -3,6 +3,7 @@ import colors from "../../resources/colors";
 
 interface PicModalProps {
   children?: React.ReactNode;
+  setIsModalOpened: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PicModalWrapper = styled.div`
@@ -36,7 +37,9 @@ const PicModalContent = styled.div`
 `;
 
 const PicModal = (props: PicModalProps) => {
-  const setOnClickListener = () => {};
+  const setOnClickListener = () => {
+    props.setIsModalOpened(false);
+  };
 
   const stopProgagation = (event: React.MouseEvent) => {
     event.stopPropagation();
